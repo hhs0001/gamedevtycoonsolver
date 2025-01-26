@@ -13,7 +13,7 @@ export function ViewSettings({ config, onChange }: ViewSettingsProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Configurar Visualização</CardTitle>
+        <CardTitle>View Settings</CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
         <div className="space-y-2">
@@ -25,7 +25,7 @@ export function ViewSettings({ config, onChange }: ViewSettingsProps) {
                 onChange({ ...config, showCombinations: checked as boolean })
               }
             />
-            <Label htmlFor="showCombinations">Melhores Combinações</Label>
+            <Label htmlFor="showCombinations">Best Combinations</Label>
           </div>
           <div className="flex items-center space-x-2">
             <Checkbox
@@ -35,7 +35,7 @@ export function ViewSettings({ config, onChange }: ViewSettingsProps) {
                 onChange({ ...config, showDevelopment: checked as boolean })
               }
             />
-            <Label htmlFor="showDevelopment">Estágios de Desenvolvimento</Label>
+            <Label htmlFor="showDevelopment">Development Stages</Label>
           </div>
           <div className="flex items-center space-x-2">
             <Checkbox
@@ -45,7 +45,7 @@ export function ViewSettings({ config, onChange }: ViewSettingsProps) {
                 onChange({ ...config, showReviews: checked as boolean })
               }
             />
-            <Label htmlFor="showReviews">Preview de Reviews</Label>
+            <Label htmlFor="showReviews">Review Preview</Label>
           </div>
         </div>
         <ThemeToggle />

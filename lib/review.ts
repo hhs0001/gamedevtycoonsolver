@@ -81,31 +81,31 @@ function generateMessages(
 ): string[] {
   const messages: string[] = [];
 
-  // Mensagens baseadas na qualidade
+  // Messages based on quality
   if (qualityModifier < 0.8) {
-    messages.push("O jogo tem muitos bugs que afetaram a experiência");
+    messages.push("The game has many bugs that affected the experience");
   }
 
   if (review.bugs > 3) {
-    messages.push("Os bugs tornaram o jogo quase injogável");
+    messages.push("The bugs made the game almost unplayable");
   }
 
-  // Mensagens baseadas no score base
+  // Messages based on base score
   if (baseScore >= 9) {
-    messages.push("Um jogo excepcional!");
+    messages.push("An exceptional game!");
   } else if (baseScore >= 7) {
-    messages.push("Um ótimo jogo!");
+    messages.push("A great game!");
   } else if (baseScore <= 4) {
-    messages.push("O jogo precisa de muito mais trabalho");
+    messages.push("The game needs much more work");
   }
 
-  // Mensagens baseadas em características especiais
+  // Messages based on special features
   if (review.isMMO) {
-    messages.push("Um MMO ambicioso, mas com alguns desafios");
+    messages.push("An ambitious MMO, but with some challenges");
   }
 
   if (review.hasNewEngine) {
-    messages.push("A nova engine traz melhorias impressionantes");
+    messages.push("The new engine brings impressive improvements");
   }
 
   return messages;

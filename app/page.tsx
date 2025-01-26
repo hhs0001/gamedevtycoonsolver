@@ -25,6 +25,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Link from "next/link";
 
 export default function Home() {
   const [viewConfig, setViewConfig] = useState<ViewConfig>({
@@ -147,18 +148,18 @@ export default function Home() {
           <div className="col-span-12 lg:col-span-8">
             <Card className="mb-6">
               <CardHeader>
-                <CardTitle>Filtros de Busca</CardTitle>
+                <CardTitle>Search Filters</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label>Tópico</Label>
+                    <Label>Topic</Label>
                     <Select value={filterTopic} onValueChange={setFilterTopic}>
                       <SelectTrigger>
-                        <SelectValue placeholder="Todos os Tópicos" />
+                        <SelectValue placeholder="All Topics" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="all">Todos os Tópicos</SelectItem>
+                        <SelectItem value="all">All Topics</SelectItem>
                         {topics.map((topic) => (
                           <SelectItem key={topic.name} value={topic.name}>
                             {topic.name}
@@ -168,18 +169,16 @@ export default function Home() {
                     </Select>
                   </div>
                   <div className="space-y-2">
-                    <Label>Plataforma</Label>
+                    <Label>Platform</Label>
                     <Select
                       value={filterPlatform}
                       onValueChange={setFilterPlatform}
                     >
                       <SelectTrigger>
-                        <SelectValue placeholder="Todas as Plataformas" />
+                        <SelectValue placeholder="All Platforms" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="all">
-                          Todas as Plataformas
-                        </SelectItem>
+                        <SelectItem value="all">All Platforms</SelectItem>
                         {platforms.map((platform) => (
                           <SelectItem key={platform.name} value={platform.name}>
                             {platform.name}
@@ -195,7 +194,7 @@ export default function Home() {
             {viewConfig.showCombinations && (
               <Card>
                 <CardHeader>
-                  <CardTitle>Melhores Combinações</CardTitle>
+                  <CardTitle>Best Combinations</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -223,8 +222,8 @@ export default function Home() {
                               {combo.platform}
                             </span>
                             <div className="flex justify-between text-sm text-muted-foreground">
-                              <span>Gênero: {combo.genreScore}</span>
-                              <span>Audiência: {combo.audienceScore}</span>
+                              <span>Genre: {combo.genreScore}</span>
+                              <span>Audience: {combo.audienceScore}</span>
                             </div>
                           </div>
                         </CardContent>
@@ -240,12 +239,12 @@ export default function Home() {
           <div className="col-span-12 lg:col-span-4">
             <Card>
               <CardHeader>
-                <CardTitle>Configurações do Jogo</CardTitle>
+                <CardTitle>Game Settings</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-6">
                   <div className="space-y-2">
-                    <Label>Tamanho do Jogo</Label>
+                    <Label>Game Size</Label>
                     <Select
                       value={gameSize}
                       onValueChange={(value) =>
@@ -256,9 +255,9 @@ export default function Home() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="small">Pequeno</SelectItem>
-                        <SelectItem value="medium">Médio</SelectItem>
-                        <SelectItem value="large">Grande</SelectItem>
+                        <SelectItem value="small">Small</SelectItem>
+                        <SelectItem value="medium">Medium</SelectItem>
+                        <SelectItem value="large">Large</SelectItem>
                         <SelectItem value="aaa">AAA</SelectItem>
                       </SelectContent>
                     </Select>
@@ -273,7 +272,7 @@ export default function Home() {
                           setIsSequel(checked as boolean)
                         }
                       />
-                      <Label htmlFor="isSequel">Sequência</Label>
+                      <Label htmlFor="isSequel">Sequel</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <Checkbox
@@ -293,7 +292,7 @@ export default function Home() {
                           setHasNewEngine(checked as boolean)
                         }
                       />
-                      <Label htmlFor="hasNewEngine">Nova Engine</Label>
+                      <Label htmlFor="hasNewEngine">New Engine</Label>
                     </div>
                   </div>
 
@@ -309,7 +308,7 @@ export default function Home() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label>Técnico</Label>
+                      <Label>Technical</Label>
                       <Input
                         type="number"
                         value={techPoints}
@@ -333,14 +332,14 @@ export default function Home() {
             {getReviewPreview() && (
               <Card className="mt-6">
                 <CardHeader>
-                  <CardTitle>Preview de Review</CardTitle>
+                  <CardTitle>Review Preview</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div className="text-center p-4 bg-accent rounded-lg">
                         <div className="text-sm text-muted-foreground">
-                          Score Base
+                          Base Score
                         </div>
                         <div className="text-2xl font-bold text-foreground">
                           {getReviewPreview()?.baseScore.toFixed(1)}
@@ -348,7 +347,7 @@ export default function Home() {
                       </div>
                       <div className="text-center p-4 bg-accent rounded-lg">
                         <div className="text-sm text-muted-foreground">
-                          Qualidade
+                          Quality
                         </div>
                         <div className="text-2xl font-bold text-foreground">
                           {getReviewPreview()?.qualityScore.toFixed(2)}x
@@ -357,7 +356,7 @@ export default function Home() {
                     </div>
 
                     <div className="text-center p-4 bg-primary/20 rounded-lg">
-                      <div className="text-sm text-primary">Score Final</div>
+                      <div className="text-sm text-primary">Final Score</div>
                       <div className="text-3xl font-bold text-primary">
                         {getReviewPreview()?.finalScore}
                       </div>
@@ -376,7 +375,7 @@ export default function Home() {
 
                     <div className="border-t border-border pt-4">
                       <span className="font-medium text-foreground">
-                        Comentários:
+                        Comments:
                       </span>
                       <ul className="mt-2 space-y-1">
                         {getReviewPreview()?.messages.map((message, index) => (
@@ -404,14 +403,14 @@ export default function Home() {
             <div className="mt-8">
               <Card>
                 <CardHeader>
-                  <CardTitle>Desenvolvimento do Jogo</CardTitle>
+                  <CardTitle>Game Development</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <Tabs defaultValue="stage1" className="w-full">
                     <TabsList className="grid w-full grid-cols-3">
-                      <TabsTrigger value="stage1">Estágio 1</TabsTrigger>
-                      <TabsTrigger value="stage2">Estágio 2</TabsTrigger>
-                      <TabsTrigger value="stage3">Estágio 3</TabsTrigger>
+                      <TabsTrigger value="stage1">Stage 1</TabsTrigger>
+                      <TabsTrigger value="stage2">Stage 2</TabsTrigger>
+                      <TabsTrigger value="stage3">Stage 3</TabsTrigger>
                     </TabsList>
                     <TabsContent value="stage1">
                       <DevelopmentStage
@@ -437,6 +436,73 @@ export default function Home() {
             </div>
           )}
       </div>
+
+      {/* Footer */}
+      <footer className="bg-card border-t border-border mt-8">
+        <div className="max-w-7xl mx-auto py-6 px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="flex items-center gap-2">
+              <Link
+                href="https://github.com/hhs0001/gamedevtycoonsolver"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-5 h-5"
+                >
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                </svg>
+                Open Source on GitHub
+              </Link>
+            </div>
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <span>Developed by Heitor Stein with ❤️ in Brazil</span>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 36 36"
+                xmlns="http://www.w3.org/2000/svg"
+                className="inline-block"
+              >
+                <path
+                  fill="#009B3A"
+                  d="M36 27a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4h28a4 4 0 0 1 4 4v18z"
+                ></path>
+                <path
+                  fill="#FEDF01"
+                  d="M32.728 18L18 29.124L3.272 18L18 6.875z"
+                ></path>
+                <circle
+                  fill="#002776"
+                  cx="17.976"
+                  cy="17.924"
+                  r="6.458"
+                ></circle>
+                <path
+                  fill="#CBE9D4"
+                  d="M12.277 14.887a6.406 6.406 0 0 0-.672 2.023c3.995-.29 9.417 1.891 11.744 4.595c.402-.604.7-1.28.883-2.004c-2.872-2.808-7.917-4.63-11.955-4.614z"
+                ></path>
+                <path fill="#88C9F9" d="M12 18.233h1v1h-1zm1 2h1v1h-1z"></path>
+                <path
+                  fill="#55ACEE"
+                  d="M15 18.233h1v1h-1zm2 1h1v1h-1zm4 2h1v1h-1zm-3 1h1v1h-1zm3-6h1v1h-1z"
+                ></path>
+                <path fill="#3B88C3" d="M19 20.233h1v1h-1z"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
